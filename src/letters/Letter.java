@@ -1,98 +1,32 @@
-package model.letters;
-import model.entity.Inhabitant;
-import model.content.Content;
+package letters;
+import content.Content;
+import entity.Inhabitant;
 
 
-/**
- * <!-- begin-user-doc -->
- * <!--  end-user-doc  -->
- * @generated
- */
-
-public abstract class Letter
+public abstract class Letter<C extends Content>
 {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
 	private Inhabitant sender;
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
 	private Inhabitant reciever;
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
 	private double cost;
+	private C content;
 	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
-	private Content content;
-	
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
-	public Letter(Inhabitant sender, Inhabitant reciever, Content content) {
-		super();
-		// TODO construct me	
+	public Letter(Inhabitant sender, Inhabitant reciever, C content) {
+		this.sender = sender;
+		this.reciever = reciever;
+		this.content = content;
+		
 	}
 	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
-	public Content getContent() {
-		// TODO implement me
-		return null;	
+	public C getContent() {
+		return this.content;	
 	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
 	
 	public double getCost() {
-		// TODO implement me
 		return 0.0;	
 	}
 	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
 	public void doAction() {
-		// TODO implement me	
+		
 	}
 	
 }

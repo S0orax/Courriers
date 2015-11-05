@@ -1,22 +1,16 @@
-package model.letters;
+package letters;
+
+import content.TextContent;
+import entity.Inhabitant;
 
 
-/**
- * <!-- begin-user-doc -->
- * <!--  end-user-doc  -->
- * @generated
- */
-
-public class SimpleLetter extends Letter
+public class SimpleLetter extends Letter<TextContent>
 {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 */
-	public SimpleLetter(){
-		super();
+
+	public SimpleLetter(Inhabitant sender, Inhabitant reciever,	TextContent content) {
+		super(sender, reciever, content);
 	}
+	
 
 }
 

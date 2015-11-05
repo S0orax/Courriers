@@ -1,65 +1,25 @@
-package model.entity;
+package entity;
 
+import java.util.ArrayList;
 
-/**
- * <!-- begin-user-doc -->
- * <!--  end-user-doc  -->
- * @generated
- */
+import letters.Letter;
 
 public class City
 {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
 	private ArrayList<Letter<?>> postbox;
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
 	private String name;
 	
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
 	public City(String name) {
-		super();
-		// TODO construct me	
+		this.name = name;
+		this.postbox = new ArrayList<Letter<?>>();
 	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
 	
 	public void sendLetter(Letter<?> letters) {
-		// TODO implement me	
+
 	}
 	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
 	public void distributeLetters() {
-		// TODO implement me	
+
 	}
 	
 }
