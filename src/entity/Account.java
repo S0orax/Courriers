@@ -13,11 +13,11 @@ public class Account
 		return this.balance;	
 	}
 	
-	public void withdraw(int amount) {
-
+	public void withdraw(double amount) {
+		
 	}
 	
-	public void credit(int amount) {
+	public void credit(double amount) {
 
 	}
 	
