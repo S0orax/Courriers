@@ -6,13 +6,13 @@ import entity.Inhabitant;
 public abstract class Letter<C extends Content>
 {
 	private Inhabitant sender;
-	private Inhabitant reciever;
+	private Inhabitant receiver;
 	private double cost;
 	private C content;
 	
-	public Letter(Inhabitant sender, Inhabitant reciever, C content) {
+	public Letter(Inhabitant sender, Inhabitant receiver, C content) {
 		this.sender = sender;
-		this.reciever = reciever;
+		this.receiver = receiver;
 		this.content = content;
 		
 	}
