@@ -9,8 +9,10 @@ public class Inhabitant
 	private Account account;
 	private City city;
 
-	public Inhabitant(String name) {
+	public Inhabitant(City city, String name) {
 		this.name = name;
+		this.city = city;
+		this.account = new Account(5000);
 	}
 	
 	public void sendLetter(Letter<?> letter) {
@@ -31,7 +33,7 @@ public class Inhabitant
 	
 	public double getBalance() {
 
-		return 0.0;	
+		return this.account.getBalance();	
 	}
 	
 	public void withdraw(int amount) {

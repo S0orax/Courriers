@@ -39,9 +39,9 @@ public class Main {
 	 * Fill the habitants array passed in parameters with new habitants
 	 * @param habitants
 	 */
-	private void createInhabitants(Inhabitant[] habitants) {
+	private void createInhabitants(City city, Inhabitant[] habitants) {
 		for(int i = 0; i < habitants.length; i++) {
-			habitants[i] = new Inhabitant("inhabitant-" + i);
+			habitants[i] = new Inhabitant(city, "inhabitant-" + i);
 		}
 	}
 	
@@ -62,7 +62,7 @@ public class Main {
 		System.out.println("Creating " + city.getName() + " city");
 		int nbHabitant = 100;
 		Inhabitant[] habitants = new Inhabitant[nbHabitant];
-		main.createInhabitants(habitants);
+		main.createInhabitants(city, habitants);
 		System.out.println("Creating " + nbHabitant + " inhabitants");
 		int nbDays = Integer.parseInt(args[0]);
 		System.out.println("Mailing letters for " + nbDays + " days");

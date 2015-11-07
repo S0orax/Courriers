@@ -1,6 +1,7 @@
 package entity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import letters.Letter;
 
@@ -22,8 +23,20 @@ public class City
 
 	}
 	
+	/**
+	 * Get the name of this city
+	 * @return the name of this city
+	 */
 	public String getName() {
 		return this.name;
+	}
+	
+	/**
+	 * Get the post box of this city
+	 * @return the post box of this city
+	 */
+	public List<Letter<?>> getPostBox() {
+		return this.postbox;
 	}
 	
 }
