@@ -29,7 +29,7 @@ public class Inhabitant
 	 * @param letter the letter who is sent
 	 */
 	public void sendLetter(Letter<?> letter) {
-		
+		// TO DO
 	}
 	
 	/**
@@ -37,7 +37,7 @@ public class Inhabitant
 	 * @param letter the letter who is received
 	 */
 	public void receiveLetter(Letter<?> letter) {
-		
+		// TO-DO
 	}
 	
 	/**

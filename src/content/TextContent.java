@@ -5,8 +5,8 @@ public class TextContent implements Content
 
 	private String message;
 	
-	public TextContent(){
-		super();
+	public TextContent(String message){
+		this.message = message;
 	}
 
 	public String getMessage() {

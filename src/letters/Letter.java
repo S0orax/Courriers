@@ -2,14 +2,25 @@ package letters;
 import content.Content;
 import entity.Inhabitant;
 
-
-public abstract class Letter<C extends Content>
+/**
+ * Class to manage the letters
+ * @author dubois bellamy
+ *
+ * @param <C> The content type of this letter
+ */
+public abstract class Letter<C extends Content> implements Content
 {
-	private Inhabitant sender;
-	private Inhabitant receiver;
-	private double cost;
-	private C content;
+	protected Inhabitant sender;
+	protected Inhabitant receiver;
+	protected double cost;
+	protected C content;
 	
+	/**
+	 * Constructor of a new letter
+	 * @param sender The inhabitant who's sent the letter
+	 * @param receiver the inhabitant who's received the letter 
+	 * @param content the content of this letter
+	 */
 	public Letter(Inhabitant sender, Inhabitant receiver, C content) {
 		this.sender = sender;
 		this.receiver = receiver;
@@ -17,16 +28,41 @@ public abstract class Letter<C extends Content>
 		
 	}
 	
+	/**
+	 * Get the content of this letter
+	 * @return the content of this letter
+	 */
 	public C getContent() {
 		return this.content;	
 	}
 	
+	/**
+	 * Get the cost of this letter
+	 * @return the cost of this letter
+	 */
 	public double getCost() {
-		return 0.0;	
+		return this.cost;	
 	}
 	
-	public void doAction() {
-		
+	/**
+	 * Do the action of this letter
+	 */
+	public abstract void doAction();
+	
+	/**
+	 * Get the sender of this letter
+	 * @return the sender of this letter
+	 */
+	public Inhabitant getSender() {
+		return this.sender;
+	}
+	
+	/**
+	 * Get the receiver of this letter
+	 * @return the receiver of this letter
+	 */
+	public Inhabitant getReceiver() {
+		return this.receiver;
 	}
 	
 }

@@ -5,22 +5,43 @@ import java.util.List;
 
 import letters.Letter;
 
+/**
+ * Class to manage a city
+ * @author dubois bellamy
+ *
+ */
 public class City
 {
 	private ArrayList<Letter<?>> postbox;
 	private String name;
 	
+	/**
+	 * Constructor of a new city
+	 * @param name
+	 */
 	public City(String name) {
 		this.name = name;
 		this.postbox = new ArrayList<Letter<?>>();
 	}
 	
-	public void sendLetter(Letter<?> letters) {
-
+	/**
+	 * Add the letter in the post box letter of this city
+	 * @param letter the letter to add in the post box
+	 */
+	public void sendLetter(Letter<?> letter) {
+		this.postbox.add(letter);
 	}
 	
+	/**
+	 * Distribute all letters
+	 */
 	public void distributeLetters() {
-
+		List<Letter<?>> mailman = new ArrayList<Letter<?>>(this.postbox);
+		this.postbox.clear();
+		
+		for(Letter<?> letter : mailman) {
+			letter.getReceiver().receiveLetter(letter);
+		}
 	}
 	
 	/**
