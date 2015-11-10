@@ -14,20 +14,37 @@ import entity.Inhabitant;
 public class Main {
 	private static final int CITY_SIZE = 100;
 	private static final int CITY_NAME_SIZE = 64;
+	private static final String SEPARATOR = "**************************************" ;
 	private static Random random;
 	
 	public static void main(String[] args) {
 		random = new Random();
-		int nbDays = (args[0] != null ? Integer.parseInt(args[0]) : 10);
+		int nbDays = (args.length > 0 ? Integer.parseInt(args[0]) : 10);
 
 		City city = createCity();
-		ArrayList<Inhabitant> inhabitantList = createInhabitants(city);
+		ArrayList<Inhabitant> inhabitants = createInhabitants(city);
 		
 		System.out.println("Creating " + city.getName() + " city");
 		System.out.println("Creating " + CITY_SIZE + " inhabitants");
 		System.out.println("Mailing letters for " + nbDays + " days");
+		System.out.println(SEPARATOR);
 		
-		printSeparator();
+		for (int i = 1; i <= nbDays; i++) {
+			System.out.println("Day " + i);
+			
+			doOneDay(city, inhabitants);
+			
+			System.out.println(SEPARATOR);
+		}
+	}
+	
+	/**
+	 * Simulate one day with random values
+	 * @param city
+	 * @param inhabitants
+	 */
+	private static void doOneDay(City city, ArrayList<Inhabitant> inhabitants){
+		
 	}
 	
 	/**
@@ -37,10 +54,10 @@ public class Main {
 	private static City createCity() {
 		String cityName = "";
 		
-		cityName += new Character((char) ('A' + random.nextInt('Z' - 'A')));
+		cityName += (char) ('A' + random.nextInt(26));
 		
 		for(int i = 0; i < CITY_NAME_SIZE - 1; i++) {
-			cityName += new Character((char) ('a' + random.nextInt('z' - 'a')));
+			cityName += (char) ('a' + random.nextInt(26));
 		}
 		
 		return new City(cityName);
@@ -62,14 +79,4 @@ public class Main {
 		return inhabitantList;
 	}
 	
-	/**
-	 * Print a separator line with 42 characters '*'
-	 */
-	private static void printSeparator() {
-		String separator = "";
-		for(int i = 0; i < 42; i++) {
-			separator += "*";
-		}
-		System.out.println(separator);
-	}
 }
