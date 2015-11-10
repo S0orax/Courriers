@@ -17,8 +17,13 @@ public class SimpleLetter extends Letter<TextContent>
 	}
 
 	@Override
-	public String getDescription() {
+	public String getContentDescription() {
 		return null;
+	}
+	
+	@Override
+	public String toString() {
+		return "a simple letter";
 	}
 	
 

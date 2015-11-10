@@ -3,6 +3,12 @@ package main;
 import java.util.ArrayList;
 import java.util.Random;
 
+import letters.Letter;
+import letters.PromisoryNote;
+import letters.RegisteredLetter;
+import letters.SimpleLetter;
+import letters.UrgentLetter;
+
 import entity.City;
 import entity.Inhabitant;
 
@@ -15,12 +21,21 @@ public class Main {
 	private static final int CITY_SIZE = 100;
 	private static final int CITY_NAME_SIZE = 64;
 	private static final String SEPARATOR = "**************************************" ;
+
+	// Use to know wich letter can be sent or not
+	private static ArrayList<Letter<?>> availableLetter;
 	private static Random random;
 	
 	public static void main(String[] args) {
 		random = new Random();
+		availableLetter = new ArrayList<>();
 		int nbDays = (args.length > 0 ? Integer.parseInt(args[0]) : 10);
 
+		availableLetter.add(new SimpleLetter(null, null, null));
+		availableLetter.add(new PromisoryNote(null, null, null));
+		availableLetter.add(new RegisteredLetter(null, null, null));
+		availableLetter.add(new UrgentLetter(null, null, null));
+		
 		City city = createCity();
 		ArrayList<Inhabitant> inhabitants = createInhabitants(city);
 		

@@ -1,7 +1,6 @@
 package content;
 
-public class TextContent implements Content
-{
+public class TextContent implements Content{
 
 	private String message;
 	
@@ -13,7 +12,7 @@ public class TextContent implements Content
 		return this.message;	
 	}
 	
-	public String getDescription() {
+	public String getContentDescription() {
 		return "";	
 	}
 	

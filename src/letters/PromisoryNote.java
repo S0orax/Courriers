@@ -13,7 +13,7 @@ public class PromisoryNote extends Letter<MoneyContent> {
 	/**
 	 * @see Content#getDescription()
 	 */
-	public String getDescription() {
+	public String getContentDescription() {
 		return null;
 	}
 
@@ -21,5 +21,9 @@ public class PromisoryNote extends Letter<MoneyContent> {
 	public void doAction() {
 		
 	}
-
+	
+	@Override
+	public String toString() {
+		return "a promisory note letter";
+	}
 }

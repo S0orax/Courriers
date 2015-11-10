@@ -3,13 +3,15 @@ package letters;
 import entity.Inhabitant;
 
 public class UrgentLetter extends Letter<Letter<?>> {
-
+	
 	public UrgentLetter(Inhabitant sender, Inhabitant receiver, Letter<?> content) {
 		super(sender, receiver, content);
+		
+		cost *= 2;
 	}
 
 	@Override
-	public String getDescription() {
+	public String getContentDescription() {
 		return null;
 	}
 
@@ -17,5 +19,9 @@ public class UrgentLetter extends Letter<Letter<?>> {
 	public void doAction() {
 		
 	}
-
+	
+	@Override
+	public String toString() {
+		return "an urgent letter";
+	}
 }

@@ -8,11 +8,10 @@ import entity.Inhabitant;
  *
  * @param <C> The content type of this letter
  */
-public abstract class Letter<C extends Content> implements Content
-{
+public abstract class Letter<C extends Content> implements Content{
 	protected Inhabitant sender;
 	protected Inhabitant receiver;
-	protected double cost;
+	protected int cost;
 	protected C content;
 	
 	/**
@@ -26,6 +25,9 @@ public abstract class Letter<C extends Content> implements Content
 		this.receiver = receiver;
 		this.content = content;
 		
+		cost = 1;
+		
+		sender.withdraw(cost);
 	}
 	
 	/**
@@ -64,6 +66,5 @@ public abstract class Letter<C extends Content> implements Content
 	public Inhabitant getReceiver() {
 		return this.receiver;
 	}
-	
 }
 

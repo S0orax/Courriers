@@ -5,15 +5,14 @@ package entity;
  * @author dubois bellamy
  *
  */
-public class Account
-{
-	private double balance;
+public class Account{
+	private int balance;
 	
 	/**
 	 * Constructor of a new bank account
 	 * @param balance the initial price of this account
 	 */
-	public Account(double balance) {
+	public Account(int balance) {
 		this.balance = balance;
 	}
 	
@@ -21,7 +20,7 @@ public class Account
 	 * Get the amount of this account
 	 * @return the amount of this account
 	 */
-	public double getBalance() {
+	public int getBalance() {
 		return this.balance;	
 	}
 	

@@ -6,7 +6,6 @@ package content;
  *
  */
 public class MoneyContent implements Content {
-
 	private int amount;
 	
 	/**
@@ -20,7 +19,7 @@ public class MoneyContent implements Content {
 	/**
 	 * @see Content#getDescription()
 	 */
-	public String getDescription() {
+	public String getContentDescription() {
 		return "";
 	}
 	
