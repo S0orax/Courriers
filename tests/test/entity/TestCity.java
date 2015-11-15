@@ -46,7 +46,7 @@ public class TestCity {
 	class MookContent implements Content {
 
 		@Override
-		public String getDescription() {
+		public String getContentDescription() {
 			return "mook";
 		}
 		
@@ -59,13 +59,13 @@ public class TestCity {
 		}
 
 		@Override
-		public String getDescription() {
-			return this.content.getDescription();
+		public void doAction() {
+			
 		}
 
 		@Override
-		public void doAction() {
-			
+		public String getContentDescription() {
+			return "mook";
 		}
 		
 	}
