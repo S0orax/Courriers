@@ -1,14 +1,10 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import letters.Letter;
-import letters.PromisoryNote;
-import letters.RegisteredLetter;
-import letters.SimpleLetter;
-import letters.UrgentLetter;
-
 import entity.City;
 import entity.Inhabitant;
 
@@ -62,14 +58,23 @@ public class Main {
 		Inhabitant sender = null;
 		Inhabitant reciever = null;
 		Letter<?> tmp = null;
+		List<Letter<?>> tmpRecieveLetter = null;
+		
 		// The number of letter to send 
 		int nbLetterSend = random.nextInt(10);
 		
 		// Recieve letter session
-		for (Letter<?> letter : city.getPostBox()) {
-			System.out.println(letter.getReceiver().getName()+" receives "+letter.toString()+" from "+letter.getSender().getName());
+		for (Inhabitant inhabitant : inhabitants) {
+			tmpRecieveLetter = inhabitant.getRecieveLetters();
+			
+			if(!tmpRecieveLetter.isEmpty()){
+				for (Letter<?> letter : tmpRecieveLetter) {
+					System.out.println(inhabitant.getName()+" receives "+letter+" from "+letter.getSender().getName());
+				}
+				// Remove all old letters
+				inhabitant.setRecieveLetters(new ArrayList<Letter<?>>());
+			}
 		}
-		
 		
 		// Send randomize letter session
 		for (int i = 0; i < nbLetterSend; i++) {
@@ -77,7 +82,11 @@ public class Main {
 			reciever = inhabitants.get(random.nextInt(CITY_SIZE));
 			
 			if(!sender.equals(reciever)){
+				// Generate a letter
 				tmp = sender.makeLetter(reciever);
+				// Simulate the payment
+				sender.sendLetter(tmp);
+				// Simulate the post of the letter
 				city.sendLetter(tmp);
 				System.out.println(sender.getName()+" mails "+tmp.toString()+" to "+reciever.getName()+" for cost of "+tmp.getCost()+" euro(s)");
 			}

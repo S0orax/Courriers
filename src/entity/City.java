@@ -35,8 +35,9 @@ public class City
 	/**
 	 * Distribute all letters
 	 */
+	@SuppressWarnings("unchecked")
 	public void distributeLetters() {
-		List<Letter<?>> mailman = new ArrayList<Letter<?>>(this.postbox);
+		List<Letter<?>> mailman = (List<Letter<?>>) postbox.clone();
 		this.postbox.clear();
 		
 		for(Letter<?> letter : mailman) {

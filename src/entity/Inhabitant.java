@@ -135,6 +135,20 @@ public class Inhabitant {
 	public void credit(int amount) {
 		this.account.credit(amount);
 	}
+
+	/**
+	 * @return the recieveLetters
+	 */
+	public ArrayList<Letter<?>> getRecieveLetters() {
+		return recieveLetters;
+	}
+
+	/**
+	 * @param recieveLetters the recieveLetters to set
+	 */
+	public void setRecieveLetters(ArrayList<Letter<?>> recieveLetters) {
+		this.recieveLetters = recieveLetters;
+	}
 	
 }
 
