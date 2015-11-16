@@ -55,7 +55,9 @@ public class Inhabitant {
 			
 		// PromisoryNote letter
 		case 1 :
-			simpleContentLetter = new PromisoryNote(this, reciever, new MoneyContent(random.nextInt(this.getBalance())));
+			int amount = random.nextInt(this.getBalance());
+			simpleContentLetter = new PromisoryNote(this, reciever, new MoneyContent(amount));
+			//this.withdraw(amount);
 			break;
 		}
 		
