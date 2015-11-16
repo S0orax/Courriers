@@ -20,7 +20,7 @@ public class RegisteredLetter extends Letter<Letter<?>>{
 	
 	@Override
 	public String toString() {
-		return "a registered letter";
+		return "a registered letter whose content is "+content.toString();
 	}
 
 }

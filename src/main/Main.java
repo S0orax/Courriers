@@ -22,19 +22,19 @@ public class Main {
 	private static final int CITY_NAME_SIZE = 64;
 	private static final String SEPARATOR = "**************************************" ;
 
-	// Use to know wich letter can be sent or not
+	// Use to know which letter can be sent or not
 	private static ArrayList<Letter<?>> availableLetter;
 	private static Random random;
 	
 	public static void main(String[] args) {
+		int nbDays = (args.length > 0 ? Integer.parseInt(args[0]) : 10);
 		random = new Random();
 		availableLetter = new ArrayList<>();
-		int nbDays = (args.length > 0 ? Integer.parseInt(args[0]) : 10);
 
-		availableLetter.add(new SimpleLetter(null, null, null));
-		availableLetter.add(new PromisoryNote(null, null, null));
-		availableLetter.add(new RegisteredLetter(null, null, null));
-		availableLetter.add(new UrgentLetter(null, null, null));
+//		availableLetter.add(new SimpleLetter(null, null, null));
+//		availableLetter.add(new PromisoryNote(null, null, null));
+//		availableLetter.add(new RegisteredLetter(null, null, null));
+//		availableLetter.add(new UrgentLetter(null, null, null));
 		
 		City city = createCity();
 		ArrayList<Inhabitant> inhabitants = createInhabitants(city);
@@ -59,7 +59,31 @@ public class Main {
 	 * @param inhabitants
 	 */
 	private static void doOneDay(City city, ArrayList<Inhabitant> inhabitants){
+		Inhabitant sender = null;
+		Inhabitant reciever = null;
+		Letter<?> tmp = null;
+		// The number of letter to send 
+		int nbLetterSend = random.nextInt(10);
 		
+		// Recieve letter session
+		for (Letter<?> letter : city.getPostBox()) {
+			System.out.println(letter.getReceiver().getName()+" receives "+letter.toString()+" from "+letter.getSender().getName());
+		}
+		
+		
+		// Send randomize letter session
+		for (int i = 0; i < nbLetterSend; i++) {
+			sender = inhabitants.get(random.nextInt(CITY_SIZE));
+			reciever = inhabitants.get(random.nextInt(CITY_SIZE));
+			
+			if(!sender.equals(reciever)){
+				tmp = sender.makeLetter(reciever);
+				city.sendLetter(tmp);
+				System.out.println(sender.getName()+" mails "+tmp.toString()+" to "+reciever.getName()+" for cost of "+tmp.getCost()+" euro(s)");
+			}
+		}
+		
+		city.distributeLetters();
 	}
 	
 	/**
@@ -82,13 +106,11 @@ public class Main {
 	 * Fill the habitants array passed in parameters with new habitants
 	 * @param habitants
 	 */
-	@SuppressWarnings("unused")
 	private static ArrayList<Inhabitant> createInhabitants(City city) {
-		int cpt = 0;
 		ArrayList<Inhabitant> inhabitantList = new ArrayList<>(CITY_SIZE);
 		
-		for (Inhabitant inhabitant : inhabitantList) {
-			inhabitant = new Inhabitant(city, "inhabitant-" + cpt++);
+		for (int cpt = 1; cpt <= CITY_SIZE; cpt++) {
+			inhabitantList.add(new Inhabitant(city, "inhabitant-" + cpt));
 		}
 		
 		return inhabitantList;

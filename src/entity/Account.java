@@ -28,15 +28,15 @@ public class Account{
 	 * Remove amount to this account balance
 	 * @param amount the cost to removing
 	 */
-	public void withdraw(double amount) {
+	public void withdraw(int amount) {
 		this.balance -= amount;
 	}
 	
 	/**
 	 * Add amount to this account balance
-	 * @param amount the cost to adding
+	 * @param amount to add
 	 */
-	public void credit(double amount) {
+	public void credit(int amount) {
 		this.balance += amount;
 	}
 	

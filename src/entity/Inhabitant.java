@@ -1,15 +1,15 @@
 package entity;
 
+import java.util.ArrayList;
 import java.util.Random;
-
-import content.MoneyContent;
-import content.TextContent;
 
 import letters.Letter;
 import letters.PromisoryNote;
 import letters.RegisteredLetter;
 import letters.SimpleLetter;
 import letters.UrgentLetter;
+import content.MoneyContent;
+import content.TextContent;
 
 /**
  * Class to manage the inhabitant
@@ -21,6 +21,7 @@ public class Inhabitant {
 	private Account account;
 	private City city;
 	private static Random random;
+	private ArrayList<Letter<?>> recieveLetters;
 	
 	/**
 	 * Constructor of a new Inhabitant
@@ -32,53 +33,59 @@ public class Inhabitant {
 		this.city = city;
 		this.account = new Account(5000);
 		random = new Random();
+		recieveLetters = new ArrayList<>();
 	}
 	
 	/**
-	 * Generate a random letter to a random inhabitant
+	 * Generate a random letter
 	 * @param reciever - the random inhabitant selected
 	 * @return the new generated letter
 	 */
 	public Letter<?> makeLetter(Inhabitant reciever){
-		Letter<?> newLetter = null;
+		Letter<?> simpleContentLetter = null;
+		Letter<?> complexeLetter = null;
 		
-		// Choose the letter's type
-		switch(random.nextInt(4)){
+		// Choose the simple letter's type
+		switch(random.nextInt(2)){
 		// Simple letter
 		case 0 :
-			newLetter = new SimpleLetter(this, reciever, new TextContent("bla bla"));
+			simpleContentLetter = new SimpleLetter(this, reciever, new TextContent("bla bla"));
+			account.withdraw(1);
 			break;
 			
 		// PromisoryNote letter
 		case 1 :
-			newLetter = new PromisoryNote(this, reciever, new MoneyContent(random.nextInt(this.getBalance())));
-			break;
-			
-		// Registered letter
-		case 2 :
-			newLetter = new RegisteredLetter(this, reciever, null);
-			
-			break;
-			
-		// Urgent letter
-		case 3 :
-			newLetter = new UrgentLetter(this, reciever, null);
-			
-			break;
-			
-		default :
+			simpleContentLetter = new PromisoryNote(this, reciever, new MoneyContent(random.nextInt(this.getBalance())));
 			break;
 		}
 		
-		return newLetter;
+		// Choose the encapsulated letter's type
+		switch(random.nextInt(3)){
+		// Registered letter
+		case 0 :
+			complexeLetter = new RegisteredLetter(this, reciever, simpleContentLetter);
+			break;
+			
+		// Urgent letter
+		case 1 :
+			complexeLetter = new UrgentLetter(this, reciever, simpleContentLetter);
+			break;
+		
+		case 2 :
+			// Nothing more
+			complexeLetter = simpleContentLetter;
+			break;
+		}
+		
+		return complexeLetter;
 	}
 	
 	/**
 	 * Send a letter from this inhabitant
-	 * @param letter the letter who is sent
+	 * @param letter the letter sent
 	 */
 	public void sendLetter(Letter<?> letter) {
-		// TO DO
+		account.withdraw(letter.getCost());
 	}
 	
 	/**
@@ -86,7 +93,7 @@ public class Inhabitant {
 	 * @param letter the letter who is received
 	 */
 	public void receiveLetter(Letter<?> letter) {
-		// TO-DO
+		recieveLetters.add(letter);
 	}
 	
 	/**

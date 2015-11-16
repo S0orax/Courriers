@@ -42,7 +42,7 @@ public abstract class Letter<C extends Content> implements Content{
 	 * Get the cost of this letter
 	 * @return the cost of this letter
 	 */
-	public double getCost() {
+	public int getCost() {
 		return this.cost;	
 	}
 	

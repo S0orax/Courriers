@@ -22,6 +22,6 @@ public class UrgentLetter extends Letter<Letter<?>> {
 	
 	@Override
 	public String toString() {
-		return "an urgent letter";
+		return "an urgent letter whose content is "+content.toString();
 	}
 }
