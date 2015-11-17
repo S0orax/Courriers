@@ -19,18 +19,13 @@ public class Main {
 	private static final String SEPARATOR = "**************************************" ;
 
 	// Use to know which letter can be sent or not
-	private static ArrayList<Letter<?>> availableLetter;
 	private static Random random;
 	
 	public static void main(String[] args) {
 		int nbDays = (args.length > 0 ? Integer.parseInt(args[0]) : 10);
+		int cpt = 0;
 		random = new Random();
-		availableLetter = new ArrayList<>();
 
-//		availableLetter.add(new SimpleLetter(null, null, null));
-//		availableLetter.add(new PromisoryNote(null, null, null));
-//		availableLetter.add(new RegisteredLetter(null, null, null));
-//		availableLetter.add(new UrgentLetter(null, null, null));
 		
 		City city = createCity();
 		ArrayList<Inhabitant> inhabitants = createInhabitants(city);
@@ -40,12 +35,13 @@ public class Main {
 		System.out.println("Mailing letters for " + nbDays + " days");
 		System.out.println(SEPARATOR);
 		
-		for (int i = 1; i <= nbDays; i++) {
-			System.out.println("Day " + i);
+		while(cpt <= nbDays){
+			System.out.println("Day " + cpt++);
 			
 			doOneDay(city, inhabitants);
 			
 			System.out.println(SEPARATOR);
+			
 		}
 	}
 	
