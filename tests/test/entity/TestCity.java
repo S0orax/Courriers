@@ -46,8 +46,9 @@ public class TestCity {
 	class MookContent implements Content {
 
 		@Override
-		public String getContentDescription() {
-			return "mook";
+		public String getDescription() {
+			// TODO Auto-generated method stub
+			return null;
 		}
 		
 	}
@@ -64,7 +65,7 @@ public class TestCity {
 		}
 
 		@Override
-		public String getContentDescription() {
+		public String getDescription() {
 			return "mook";
 		}
 		
