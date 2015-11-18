@@ -23,7 +23,7 @@ public class Main {
 	
 	public static void main(String[] args) {
 		int nbDays = (args.length > 0 ? Integer.parseInt(args[0]) : 10);
-		int cpt = 0;
+		int cpt = 1;
 		random = new Random();
 		
 		City city = createCity();
@@ -40,7 +40,14 @@ public class Main {
 			doOneDay(city, inhabitants);
 			
 			System.out.println(SEPARATOR);
+		}
+		
+		while(stillLetter(inhabitants)){
+			System.out.println("Day " + cpt++);
 			
+			city.distributeLetters();
+			
+			System.out.println(SEPARATOR);
 		}
 	}
 	
@@ -66,9 +73,10 @@ public class Main {
 				for (Letter<?> letter : tmpRecieveLetter) {
 					System.out.println("<- " + inhabitant.getName()+" receives "+letter.getDescription()+" from "+letter.getSender().getName());
 					letter.doAction();
+					
 				}
 				// Remove all old letters
-				inhabitant.setRecieveLetters(new ArrayList<Letter<?>>());
+				inhabitant.setRecieveLetters(new ArrayList<Letter<?>>()); // ######################################################################################################################
 			}
 		}
 		
@@ -120,6 +128,17 @@ public class Main {
 		}
 		
 		return inhabitantList;
+	}
+	
+	private static boolean stillLetter(ArrayList<Inhabitant> inhabitants){
+		
+		for (Inhabitant hab : inhabitants) {
+			if(!hab.getRecieveLetters().isEmpty()){
+				return true;
+			}
+		}
+		
+		return false;
 	}
 	
 }

@@ -20,12 +20,14 @@ public class RegisteredLetter extends Letter<Letter<?>>{
 	@Override
 	public void doAction() {
 		TextContent text = new TextContent("aknowledgment of receipt for "+content.getDescription());
-
+		// Make aknowledgment
 		SimpleLetter aknowledgment = new SimpleLetter(receiver, sender, text);
-		
+		// Post letter
 		sender.getCity().sendLetter(aknowledgment);
 		
-		// If its content is 
+		System.out.println("-> " + receiver.getName()+" mails "+aknowledgment.getDescription()+" to "+sender.getName()+" for cost of "+aknowledgment.getCost()+" euro(s)");
+		
+		// If its content is a promisory not (for example), it have to make the money transfert...
 		content.doAction();
 	}
 }

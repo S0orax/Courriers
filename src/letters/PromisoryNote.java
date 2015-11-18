@@ -33,6 +33,6 @@ public class PromisoryNote extends Letter<MoneyContent> {
 		// Send the letter
 		sender.getCity().sendLetter(thanks);
 		
-		System.out.println("-> " + sender.getName()+" mails "+thanks.getDescription()+" to "+receiver.getName()+" for cost of "+thanks.getCost()+" euro(s)");
+		System.out.println("-> " + receiver.getName()+" mails "+thanks.getDescription()+" to "+sender.getName()+" for cost of "+thanks.getCost()+" euro(s)");
 	}
 }
