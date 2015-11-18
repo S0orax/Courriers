@@ -57,7 +57,6 @@ public class Inhabitant {
 		case 1 :
 			int amount = random.nextInt(this.getBalance());
 			simpleContentLetter = new PromisoryNote(this, reciever, new MoneyContent(amount));
-			//this.withdraw(amount);
 			break;
 		}
 		

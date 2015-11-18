@@ -19,7 +19,7 @@ public class MoneyContent implements Content {
 	/**
 	 * @see Content#getDescription()
 	 */
-	public String getContentDescription() {
+	public String getDescription() {
 		return "";
 	}
 	

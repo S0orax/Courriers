@@ -12,7 +12,7 @@ public class TextContent implements Content{
 		return this.message;	
 	}
 	
-	public String getContentDescription() {
+	public String getDescription() {
 		return "";	
 	}
 	

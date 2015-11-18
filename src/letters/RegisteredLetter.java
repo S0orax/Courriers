@@ -1,5 +1,6 @@
 package letters;
 
+import content.TextContent;
 import entity.Inhabitant;
 
 public class RegisteredLetter extends Letter<Letter<?>>{
@@ -9,18 +10,22 @@ public class RegisteredLetter extends Letter<Letter<?>>{
 	}
 
 	@Override
-	public String getContentDescription() {
-		return null;
+	public String getDescription() {
+		return "a registered letter whose content is "+content.getDescription();
 	}
 
+	/**
+	 * Send an aknowledgment
+	 */
 	@Override
 	public void doAction() {
-		
-	}
-	
-	@Override
-	public String toString() {
-		return "a registered letter whose content is "+content.toString();
-	}
+		TextContent text = new TextContent("aknowledgment of receipt for "+content.getDescription());
 
+		SimpleLetter aknowledgment = new SimpleLetter(receiver, sender, text);
+		
+		sender.getCity().sendLetter(aknowledgment);
+		
+		// If its content is 
+		content.doAction();
+	}
 }

@@ -11,17 +11,12 @@ public class UrgentLetter extends Letter<Letter<?>> {
 	}
 
 	@Override
-	public String getContentDescription() {
-		return null;
+	public String getDescription() {
+		return "an urgent letter whose content is "+content.getDescription();
 	}
 
 	@Override
 	public void doAction() {
-		
-	}
-	
-	@Override
-	public String toString() {
-		return "an urgent letter whose content is "+content.toString();
+		content.doAction();
 	}
 }

@@ -66,5 +66,52 @@ public abstract class Letter<C extends Content> implements Content{
 	public Inhabitant getReceiver() {
 		return this.receiver;
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((content == null) ? 0 : content.hashCode());
+		result = prime * result + cost;
+		result = prime * result
+				+ ((receiver == null) ? 0 : receiver.hashCode());
+		result = prime * result + ((sender == null) ? 0 : sender.hashCode());
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Letter other = (Letter) obj;
+		if (content == null) {
+			if (other.content != null)
+				return false;
+		} else if (!content.equals(other.content))
+			return false;
+		if (cost != other.cost)
+			return false;
+		if (receiver == null) {
+			if (other.receiver != null)
+				return false;
+		} else if (!receiver.equals(other.receiver))
+			return false;
+		if (sender == null) {
+			if (other.sender != null)
+				return false;
+		} else if (!sender.equals(other.sender))
+			return false;
+		return true;
+	}
 }
 

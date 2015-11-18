@@ -25,7 +25,6 @@ public class Main {
 		int nbDays = (args.length > 0 ? Integer.parseInt(args[0]) : 10);
 		int cpt = 0;
 		random = new Random();
-
 		
 		City city = createCity();
 		ArrayList<Inhabitant> inhabitants = createInhabitants(city);
@@ -52,7 +51,7 @@ public class Main {
 	 */
 	private static void doOneDay(City city, ArrayList<Inhabitant> inhabitants){
 		Inhabitant sender = null;
-		Inhabitant reciever = null;
+		Inhabitant receiver = null;
 		Letter<?> tmp = null;
 		List<Letter<?>> tmpRecieveLetter = null;
 		
@@ -65,7 +64,8 @@ public class Main {
 			
 			if(!tmpRecieveLetter.isEmpty()){
 				for (Letter<?> letter : tmpRecieveLetter) {
-					System.out.println(inhabitant.getName()+" receives "+letter+" from "+letter.getSender().getName());
+					System.out.println("<- " + inhabitant.getName()+" receives "+letter.getDescription()+" from "+letter.getSender().getName());
+					letter.doAction();
 				}
 				// Remove all old letters
 				inhabitant.setRecieveLetters(new ArrayList<Letter<?>>());
@@ -75,16 +75,17 @@ public class Main {
 		// Send randomize letter session
 		for (int i = 0; i < nbLetterSend; i++) {
 			sender = inhabitants.get(random.nextInt(CITY_SIZE));
-			reciever = inhabitants.get(random.nextInt(CITY_SIZE));
+			receiver = inhabitants.get(random.nextInt(CITY_SIZE));
 			
-			if(!sender.equals(reciever)){
+			if(!sender.equals(receiver)){
 				// Generate a letter
-				tmp = sender.makeLetter(reciever);
+				tmp = sender.makeLetter(receiver);
 				// Simulate the payment
 				sender.sendLetter(tmp);
 				// Simulate the post of the letter
 				city.sendLetter(tmp);
-				System.out.println(sender.getName()+" mails "+tmp.toString()+" to "+reciever.getName()+" for cost of "+tmp.getCost()+" euro(s)");
+				
+				System.out.println("-> " + sender.getName()+" mails "+tmp.getDescription()+" to "+receiver.getName()+" for cost of "+tmp.getCost()+" euro(s)");
 			}
 		}
 		
