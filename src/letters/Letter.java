@@ -94,11 +94,6 @@ public abstract class Letter<C extends Content> implements Content{
 		if (getClass() != obj.getClass())
 			return false;
 		Letter other = (Letter) obj;
-		if (content == null) {
-			if (other.content != null)
-				return false;
-		} else if (!content.equals(other.content))
-			return false;
 		if (cost != other.cost)
 			return false;
 		if (receiver == null) {
