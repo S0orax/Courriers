@@ -23,9 +23,6 @@ public class TestPromisoryNote extends TestLetter {
 		assertEquals(4992.99, this.letter.getSender().getBalance(), 2);
 		assertEquals(5004, this.letter.getReceiver().getBalance(), 0);
 		
-		System.out.println(city.getPostBox().get(0));
-		System.out.println(new ThanksLetter(letter.getReceiver(), letter.getSender(), (PromisoryNote) letter));
-		
 		assertTrue(city.getPostBox().contains(new ThanksLetter(letter.getReceiver(), letter.getSender(), (PromisoryNote) letter)));
 	}
 

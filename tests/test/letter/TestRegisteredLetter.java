@@ -3,7 +3,10 @@ package test.letter;
 import static org.junit.Assert.*;
 import letters.Letter;
 import letters.RegisteredLetter;
+import letters.SimpleLetter;
 import content.Content;
+import content.TextContent;
+import entity.City;
 import entity.Inhabitant;
 
 public class TestRegisteredLetter extends TestLetter {
@@ -17,14 +20,16 @@ public class TestRegisteredLetter extends TestLetter {
 	protected void testDoActionForThisLetter() {
 		MookLetter letterContent = (MookLetter) this.letter.getContent();
 		MookContent content = (MookContent) letterContent.getContent();
-		
-		
+		City city = this.letter.getSender().getCity();
 		
 		assertFalse(letterContent.actionDone);
 		assertFalse(content.actionDone);
 		this.letter.doAction();
 		assertTrue(letterContent.actionDone);
 		assertTrue(content.actionDone);
+		assertEquals(4984, this.letter.getSender().getBalance(), 0);
+		
+		assertTrue(city.getPostBox().contains(new SimpleLetter(letter.getReceiver(), letter.getSender(), new TextContent("test"))));
 	}
 	
 	class MookContent implements Content {
