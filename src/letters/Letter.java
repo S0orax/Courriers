@@ -25,7 +25,7 @@ public abstract class Letter<C extends Content> implements Content{
 		this.receiver = receiver;
 		this.content = content;
 		this.initCost();
-		sender.sendLetter(this);
+		sender.getCity().sendLetter(this);
 	}
 	
 	protected void initCost() {

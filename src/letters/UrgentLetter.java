@@ -6,8 +6,10 @@ public class UrgentLetter extends Letter<Letter<?>> {
 	
 	public UrgentLetter(Inhabitant sender, Inhabitant receiver, Letter<?> content) {
 		super(sender, receiver, content);
-		
-		cost *= 2;
+	}
+	
+	protected void initCost() {
+		cost = 2;
 	}
 
 	@Override

@@ -19,6 +19,7 @@ public class TestPromisoryNote extends TestLetter {
 	protected void testDoActionForThisLetter() {
 		City city = this.letter.getSender().getCity();
 		assertEquals(4999, this.letter.getSender().getBalance(), 0);
+		assertEquals(5000, this.letter.getReceiver().getBalance(), 0);
 		this.letter.doAction();
 		assertEquals(4992.99, this.letter.getSender().getBalance(), 2);
 		assertEquals(5004, this.letter.getReceiver().getBalance(), 0);
