@@ -30,6 +30,7 @@ public class City
 	 */
 	public void sendLetter(Letter<?> letter) {
 		this.postbox.add(letter);
+		letter.getSender().sendLetter(letter);
 	}
 	
 	/**

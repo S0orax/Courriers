@@ -7,6 +7,7 @@ public class RegisteredLetter extends Letter<Letter<?>>{
 
 	public RegisteredLetter(Inhabitant sender, Inhabitant receiver, Letter<?> content) {
 		super(sender, receiver, content);
+		this.cost = 15;
 	}
 
 	@Override

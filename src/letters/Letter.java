@@ -26,8 +26,6 @@ public abstract class Letter<C extends Content> implements Content{
 		this.content = content;
 		
 		cost = 1;
-		
-		sender.withdraw(cost);
 	}
 	
 	/**
