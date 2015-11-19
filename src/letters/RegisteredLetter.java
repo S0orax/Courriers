@@ -7,9 +7,15 @@ public class RegisteredLetter extends Letter<Letter<?>>{
 
 	public RegisteredLetter(Inhabitant sender, Inhabitant receiver, Letter<?> content) {
 		super(sender, receiver, content);
+	}
+	
+	protected void initCost() {
 		this.cost = 15;
 	}
-
+	
+	/**
+	 * @see Letter#getDescription()
+	 */
 	@Override
 	public String getDescription() {
 		return "a registered letter whose content is "+content.getDescription();

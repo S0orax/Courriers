@@ -9,6 +9,10 @@ public class PromisoryNote extends Letter<MoneyContent> {
 	public PromisoryNote(Inhabitant sender, Inhabitant receiver, MoneyContent content) {
 		super(sender, receiver, content);
 	}
+	
+	protected void initCost() {
+		this.cost = 1;
+	}
 
 	/**
 	 * @see Content#getDescription()
