@@ -44,6 +44,7 @@ public class Inhabitant {
 	public Letter<?> makeLetter(Inhabitant reciever){
 		Letter<?> simpleContentLetter = null;
 		Letter<?> complexeLetter = null;
+		Letter<?> finalLetter = null;
 		
 		// Choose the simple letter's type
 		switch(random.nextInt(2)){
@@ -78,7 +79,25 @@ public class Inhabitant {
 			break;
 		}
 		
-		return complexeLetter;
+		// Choose the second encapsulated letter's type
+		switch(random.nextInt(3)){
+		// Registered letter
+		case 0 :
+			finalLetter = new RegisteredLetter(this, reciever, complexeLetter);
+			break;
+			
+		// Urgent letter
+		case 1 :
+			finalLetter = new UrgentLetter(this, reciever, complexeLetter);
+			break;
+		
+		case 2 :
+			// Nothing more
+			finalLetter = complexeLetter;
+			break;
+		}
+		
+		return finalLetter;
 	}
 	
 	@Override
@@ -111,7 +130,10 @@ public class Inhabitant {
 	 * @param letter the letter sent
 	 */
 	public void sendLetter(Letter<?> letter) {
-		account.withdraw(letter.getCost());
+		if(this.account.getBalance() >= letter.getCost())
+			account.withdraw(letter.getCost());
+		else
+			System.out.println("# "+letter.getSender()+" try to send a letter whose cost "+letter.getCost()+" but his balance is "+account.getBalance()+" euros");
 	}
 	
 	/**

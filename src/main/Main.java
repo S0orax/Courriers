@@ -37,7 +37,7 @@ public class Main {
 		while(cpt <= nbDays){
 			System.out.println("Day " + cpt++);
 			
-			doOneDay(city, inhabitants);
+			doOneDay(city, inhabitants, true);
 			
 			System.out.println(SEPARATOR);
 		}
@@ -45,7 +45,7 @@ public class Main {
 		while(stillLetter(inhabitants)){
 			System.out.println("Day " + cpt++);
 			
-			city.distributeLetters();
+			doOneDay(city, inhabitants, false);
 			
 			System.out.println(SEPARATOR);
 		}
@@ -56,7 +56,7 @@ public class Main {
 	 * @param city
 	 * @param inhabitants
 	 */
-	private static void doOneDay(City city, ArrayList<Inhabitant> inhabitants){
+	private static void doOneDay(City city, ArrayList<Inhabitant> inhabitants, boolean allowSendLetter){
 		Inhabitant sender = null;
 		Inhabitant receiver = null;
 		Letter<?> tmp = null;
@@ -76,27 +76,29 @@ public class Main {
 					
 				}
 				// Remove all old letters
-				inhabitant.setRecieveLetters(new ArrayList<Letter<?>>()); // ######################################################################################################################
+				inhabitant.setRecieveLetters(new ArrayList<Letter<?>>());
 			}
 		}
 		
-		// Send randomize letter session
-		for (int i = 0; i < nbLetterSend; i++) {
-			sender = inhabitants.get(random.nextInt(CITY_SIZE));
-			receiver = inhabitants.get(random.nextInt(CITY_SIZE));
-			
-			if(!sender.equals(receiver)){
-				// Generate a letter
-				tmp = sender.makeLetter(receiver);
-				// Simulate the payment
-				sender.sendLetter(tmp);
-				// Simulate the post of the letter
-				city.sendLetter(tmp);
+		if(allowSendLetter){
+			// Send randomize letter session
+			for (int i = 0; i < nbLetterSend; i++) {
+				sender = inhabitants.get(random.nextInt(CITY_SIZE));
+				receiver = inhabitants.get(random.nextInt(CITY_SIZE));
 				
-				System.out.println("-> " + sender.getName()+" mails "+tmp.getDescription()+" to "+receiver.getName()+" for cost of "+tmp.getCost()+" euro(s)");
+				if(!sender.equals(receiver)){
+					// Generate a letter
+					tmp = sender.makeLetter(receiver);
+					// Simulate the payment
+					sender.sendLetter(tmp);
+					// Simulate the post of the letter
+					city.sendLetter(tmp);
+					
+					System.out.println("-> " + sender.getName()+" mails "+tmp.getDescription()+" to "+receiver.getName()+" for cost of "+tmp.getCost()+" euro(s)");
+				}
 			}
+			
 		}
-		
 		city.distributeLetters();
 	}
 	
