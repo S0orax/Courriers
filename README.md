@@ -20,45 +20,46 @@ Letter est une classe decorator qui permet d'avoir une superposition de lettre, 
 ##Code samples
 
 TestLetter : Test abstrait pour toute les lettres
-<code>
-@Before
-public void init() {
-	City city = new City("Lille");
-	Inhabitant sender = new Inhabitant(city, "timoleon");
-	Inhabitant receiver = new Inhabitant(city, "yoda");
-	this.letter = this.createLetter(sender, receiver);
-}
 
-protected abstract Letter<?> createLetter(Inhabitant sender, Inhabitant receiver);
-protected abstract void testDoActionForThisLetter();
 
-@Test
-public void testDoAction() {
-	testDoActionForThisLetter();
-}
-</code>
+	@Before
+	public void init() {
+		City city = new City("Lille");
+		Inhabitant sender = new Inhabitant(city, "timoleon");
+		Inhabitant receiver = new Inhabitant(city, "yoda");
+		this.letter = this.createLetter(sender, receiver);
+	}
+
+	protected abstract Letter<?> createLetter(Inhabitant sender, Inhabitant receiver);
+	protected abstract void testDoActionForThisLetter();
+
+	@Test
+	public void testDoAction() {
+		testDoActionForThisLetter();
+	}
 
 TestRegisteredLetter : Mook class
-<code>
-class MookLetter extends Letter<MookContent> {
-	
-	private boolean actionDone;
-	
-	public MookLetter(Inhabitant sender, Inhabitant receiver, MookContent content) {
-		super(sender, receiver, content);
-		this.actionDone = false;
+
+
+	class MookLetter extends Letter<MookContent> {
+		
+		private boolean actionDone;
+		
+		public MookLetter(Inhabitant sender, Inhabitant receiver, MookContent content) {
+			super(sender, receiver, content);
+			this.actionDone = false;
+		}
+
+		@Override
+		public String getDescription() {
+			return this.content.getDescription();
+		}
+
+		@Override
+		public void doAction() {
+			this.actionDone = true;
+			this.getDescription();
+		}
+		
 	}
 
-	@Override
-	public String getDescription() {
-		return this.content.getDescription();
-	}
-
-	@Override
-	public void doAction() {
-		this.actionDone = true;
-		this.getDescription();
-	}
-	
-}
-</code>
