@@ -9,6 +9,9 @@ public class RegisteredLetter extends Letter<Letter<?>>{
 		super(sender, receiver, content);
 	}
 	
+	/**
+	 * @see RegisteredLetter#initCost()
+	 */
 	protected void initCost() {
 		this.cost = 15;
 	}
